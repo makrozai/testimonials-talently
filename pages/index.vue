@@ -6,8 +6,8 @@
       </v-col>
       <v-col cols="6" class="text-right">
         <v-btn
-          color="purple accent-3"
-          large
+          color="primary"
+          x-large
           to="/crear-usuario"
         >
           <v-icon left>

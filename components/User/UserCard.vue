@@ -6,7 +6,7 @@
       class="user-card my-2"
     >
       <v-btn
-        color="red darken-4"
+        color="error darken-2"
         elevation="2"
         fab
         right

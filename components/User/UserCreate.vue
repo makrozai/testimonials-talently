@@ -140,13 +140,13 @@ export default {
     user: {
       name: '',
       last_name: '',
-      avatar: 'https://static-talently.s3.amazonaws.com/francisco_farfan_18754b3fed.jpg',
+      avatar: '',
       profession: '',
       testimony: '',
-      github: 'https://github.com/Talently-Oficial',
-      twitter: 'https://twitter.com/TalentlyTech',
-      linkedin: 'https://www.linkedin.com/school/talentlytech',
-      company_logo: 'https://static-talently.s3.amazonaws.com/rappi_8fbc74f632.png'
+      github: '',
+      twitter: '',
+      linkedin: '',
+      company_logo: ''
     },
     rules: {
       names: [

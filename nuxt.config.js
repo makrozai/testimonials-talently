@@ -6,7 +6,7 @@ export default {
     titleTemplate: '%s - Testimonials',
     title: 'Testimonials',
     htmlAttrs: {
-      lang: 'en'
+      lang: 'es'
     },
     meta: [
       { charset: 'utf-8' },

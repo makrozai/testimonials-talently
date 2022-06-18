@@ -53,7 +53,7 @@
         Twitter
       </v-btn>
       <v-btn
-        color="indigo darken-2"
+        color="primary darken-2"
         x-large
         :href="user.linkedin"
         target="_blank"
