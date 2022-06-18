@@ -1,19 +1,26 @@
 // state
 export const state = () => ({
-  _counter: 1
+  alert: {}
 })
 
 // getters
 export const getters = {
-  getCounter (state) {
-    return state._counter
+  alert (state) {
+    return state.alert
   }
 }
 
 // mutations
 export const mutations = {
-  increment (state) {
-    state._counter++
+  updateAlert (state, payload) {
+    /**
+     * @type { SUCCESS INFO WARNING ERROR }
+     * @content { string }
+     */
+    state.alert = {
+      ...payload,
+      timeOut: 5000
+    }
   }
 }
 

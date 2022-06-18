@@ -192,12 +192,19 @@ export default {
       try {
         await this.createUser(this.user)
 
-        this.$refs.createUserForm.reset()
-        this.$refs.createUserForm.resetValidation()
+        this.$store.commit('updateAlert', {
+          type: 'success',
+          content: 'Usuario agregado',
+          state: true
+        })
 
         this.$router.go(-1)
       } catch (error) {
-        alert('error service', error)
+        this.$store.commit('updateAlert', {
+          type: 'error',
+          content: error,
+          state: true
+        })
       } finally {
         this.loading = false
       }
