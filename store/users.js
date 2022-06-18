@@ -38,7 +38,7 @@ export const mutations = {
 export const actions = {
   deleteUser ({ commit }, id) {
     return new Promise((resolve, reject) => {
-      this.$axios.delete(`https://api-challenge-talently.vercel.app/api/users/delete/${id}`)
+      this.$axios.delete(`users/delete/${id}`)
         .then(({ data }) => {
           commit('deleteUser', data.id)
 
@@ -51,7 +51,7 @@ export const actions = {
   },
   getUser ({ commit }, id) {
     return new Promise((resolve, reject) => {
-      this.$axios.get(`https://api-challenge-talently.vercel.app/api/users/${id}`)
+      this.$axios.get(`users/${id}`)
         .then(({ data }) => {
           const user = {
             ...data.result,
@@ -69,7 +69,7 @@ export const actions = {
   },
   getUsers ({ commit }) {
     return new Promise((resolve, reject) => {
-      this.$axios.get('https://api-challenge-talently.vercel.app/api/users')
+      this.$axios.get('users')
         .then(({ data }) => {
           commit('getUsers', data.result)
 
@@ -82,7 +82,7 @@ export const actions = {
   },
   createUser ({ commit }, payload) {
     return new Promise((resolve, reject) => {
-      this.$axios.post('https://api-challenge-talently.vercel.app/api/users/add', payload)
+      this.$axios.post('users/add', payload)
         .then(({ data }) => {
           const user = {
             ...payload,
