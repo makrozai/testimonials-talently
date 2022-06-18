@@ -5,9 +5,10 @@
       flat
       color="transparent"
     >
-      <v-spacer></v-spacer>
+      <v-spacer />
       <v-btn
         icon
+        @click="removeUser"
       >
         <v-icon>mdi-delete-outline</v-icon>
       </v-btn>
@@ -67,6 +68,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   name: 'UserDetail',
 
@@ -78,7 +81,30 @@ export default {
   },
 
   data: () => ({
-  })
+  }),
+
+  methods: {
+    ...mapActions({
+      deleteUser: 'users/deleteUser'
+    }),
+    async removeUser () {
+      try {
+        await this.deleteUser(this.user.id)
+
+        this.$store.commit('updateAlert', {
+          type: 'success',
+          content: 'Usuario eliminado',
+          state: true
+        })
+      } catch (error) {
+        this.$store.commit('updateAlert', {
+          type: 'error',
+          content: error,
+          state: true
+        })
+      }
+    }
+  }
 }
 </script>
 

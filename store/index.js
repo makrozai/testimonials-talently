@@ -1,6 +1,10 @@
 // state
 export const state = () => ({
-  alert: {}
+  alert: {
+    state: false,
+    content: '',
+    type: 'error'
+  }
 })
 
 // getters
@@ -19,7 +23,7 @@ export const mutations = {
      */
     state.alert = {
       ...payload,
-      timeOut: 5000
+      timeOut: 3000
     }
   }
 }

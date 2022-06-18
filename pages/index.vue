@@ -1,10 +1,10 @@
 <template>
   <v-container>
     <v-row>
-      <v-col cols="12" md="6">
+      <v-col cols="6">
         <h1>Testimonials</h1>
       </v-col>
-      <v-col cols="12" md="6" class="text-right">
+      <v-col cols="6" class="text-right">
         <v-btn
           color="purple accent-3"
           large

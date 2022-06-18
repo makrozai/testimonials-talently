@@ -24,18 +24,43 @@ export const mutations = {
   },
   getUser (state, payload) {
     state.user = payload
+  },
+  deleteUser (state, payload) {
+    const index = state.users.findIndex(item => item.id === payload)
+
+    if (index > -1) {
+      state.users.splice(index, 1)
+    }
   }
 }
 
 // actions
 export const actions = {
+  deleteUser ({ commit }, id) {
+    return new Promise((resolve, reject) => {
+      this.$axios.delete(`https://api-challenge-talently.vercel.app/api/users/delete/${id}`)
+        .then(({ data }) => {
+          commit('deleteUser', data.id)
+
+          resolve(data.id)
+        })
+        .catch((error) => {
+          reject(error)
+        })
+    })
+  },
   getUser ({ commit }, id) {
     return new Promise((resolve, reject) => {
       this.$axios.get(`https://api-challenge-talently.vercel.app/api/users/${id}`)
         .then(({ data }) => {
-          commit('getUser', data.result)
+          const user = {
+            ...data.result,
+            id
+          }
 
-          resolve(data.result)
+          commit('getUser', user)
+
+          resolve(user)
         })
         .catch((error) => {
           reject(error)

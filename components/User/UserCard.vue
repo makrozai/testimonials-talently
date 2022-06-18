@@ -2,12 +2,26 @@
   <div>
     <v-card
       :disabled="disabled"
-      class="mx-auto"
-      max-width="344"
       outlined
-      @click="showDetailModal"
+      class="user-card my-2"
     >
-      <v-list-item three-line>
+      <v-btn
+        color="red darken-4"
+        elevation="2"
+        fab
+        right
+        top
+        absolute
+        small
+        class="user-card-delete"
+        @click="removeUser"
+      >
+        <v-icon>mdi-delete-outline</v-icon>
+      </v-btn>
+      <v-list-item
+        three-line
+        @click="showDetailModal"
+      >
         <v-list-item-avatar
           size="80"
           color="grey"
@@ -15,8 +29,8 @@
           <v-img :src="curentUser.avatar" />
         </v-list-item-avatar>
         <v-list-item-content>
-          <v-list-item-title class="text-h5">
-            {{ curentUser.name }}
+          <v-list-item-title class="text-h6">
+            {{ curentUser.name }} {{ curentUser.last_name }}
           </v-list-item-title>
           <v-list-item-subtitle>{{ curentUser.profession }}</v-list-item-subtitle>
         </v-list-item-content>
@@ -62,7 +76,8 @@ export default {
 
   methods: {
     ...mapActions({
-      getUser: 'users/getUser'
+      getUser: 'users/getUser',
+      deleteUser: 'users/deleteUser'
     }),
     async showDetailModal () {
       this.disabled = true
@@ -74,11 +89,35 @@ export default {
       } finally {
         this.disabled = false
       }
+    },
+    async removeUser () {
+      try {
+        await this.deleteUser(this.curentUser.id)
+
+        this.$store.commit('updateAlert', {
+          type: 'success',
+          content: 'Usuario eliminado',
+          state: true
+        })
+      } catch (error) {
+        this.$store.commit('updateAlert', {
+          type: 'error',
+          content: error,
+          state: true
+        })
+      }
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-
+.user-card {
+  &-delete {
+    opacity: 0;
+  }
+  &:hover &-delete {
+    opacity: 1;
+  }
+}
 </style>

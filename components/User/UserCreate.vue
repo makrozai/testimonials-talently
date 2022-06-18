@@ -109,6 +109,7 @@
           <v-btn
             text
             x-large
+            @click="$router.go(-1)"
           >
             Cancelar
           </v-btn>

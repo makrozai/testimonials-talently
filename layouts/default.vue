@@ -25,7 +25,9 @@
       prominent
       :type="alert.type"
       class="alert-fixed"
-    >{{ alert.content }}</v-alert>
+    >
+      {{ alert.content }}
+    </v-alert>
   </v-app>
 </template>
 
@@ -52,14 +54,14 @@ export default {
       ],
       miniVariant: false,
       right: true,
-      title: 'TALENTLY',
-      alertContent: {
-        state: false,
-        content: '',
-        timeOut: 0,
-        type: 'success'
-      }
+      title: 'TALENTLY'
     }
+  },
+
+  computed: {
+    ...mapGetters({
+      alert: 'alert'
+    })
   },
 
   watch: {
@@ -74,12 +76,6 @@ export default {
         }, val.timeOut)
       }
     }
-  },
-
-  computed: {
-    ...mapGetters({
-      alert: 'alert'
-    })
   }
 }
 </script>
