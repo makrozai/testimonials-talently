@@ -1,12 +1,16 @@
 // state
 export const state = () => ({
-  users: []
+  users: [],
+  user: {}
 })
 
 // getters
 export const getters = {
   users (state) {
     return state.users
+  },
+  user (state) {
+    return state.user
   }
 }
 
@@ -17,34 +21,55 @@ export const mutations = {
   },
   createUser (state, payload) {
     state.users.push(payload)
+  },
+  getUser (state, payload) {
+    state.user = payload
   }
 }
 
 // actions
 export const actions = {
-  async getUsers ({ commit }) {
-    try {
-      const { data } = await this.$axios.get('https://api-challenge-talently.vercel.app/api/users')
+  getUser ({ commit }, id) {
+    return new Promise((resolve, reject) => {
+      this.$axios.get(`https://api-challenge-talently.vercel.app/api/users/${id}`)
+        .then(({ data }) => {
+          commit('getUser', data.result)
 
-      commit('getUsers', data.result)
-      return data.result
-    } catch (error) {
-      alert.error(error)
-    }
+          resolve(data.result)
+        })
+        .catch((error) => {
+          reject(error)
+        })
+    })
   },
-  async createUser ({ commit }, payload) {
-    try {
-      const { data } = await this.$axios.post('https://api-challenge-talently.vercel.app/api/users/add', payload)
+  getUsers ({ commit }) {
+    return new Promise((resolve, reject) => {
+      this.$axios.get('https://api-challenge-talently.vercel.app/api/users')
+        .then(({ data }) => {
+          commit('getUsers', data.result)
 
-      const user = {
-        ...payload,
-        id: data.id
-      }
+          resolve(data.result)
+        })
+        .catch((error) => {
+          reject(error)
+        })
+    })
+  },
+  createUser ({ commit }, payload) {
+    return new Promise((resolve, reject) => {
+      this.$axios.post('https://api-challenge-talently.vercel.app/api/users/add', payload)
+        .then(({ data }) => {
+          const user = {
+            ...payload,
+            id: data.id
+          }
 
-      commit('createUser', user)
-      return user
-    } catch (error) {
-      alert(error)
-    }
+          commit('createUser', user)
+          resolve(user)
+        })
+        .catch((error) => {
+          reject(error)
+        })
+    })
   }
 }

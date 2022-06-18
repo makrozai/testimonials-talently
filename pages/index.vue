@@ -8,6 +8,7 @@
         <v-btn
           color="purple accent-3"
           large
+          to="/crear-usuario"
         >
           <v-icon left>
             mdi-pencil
@@ -22,7 +23,7 @@
         md="4"
       >
         <user-card
-          :user="user"
+          :curent-user="user"
         />
       </v-col>
     </v-row>

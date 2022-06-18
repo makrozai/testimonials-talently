@@ -14,32 +14,22 @@
       {{ user.testimony }}
     </v-card-text>
 
+    <img :src="user.company_logo" height="30">
+
     <v-card-actions class="justify-center py-6">
-      <v-btn
-        color="secondary"
-        x-large
-        @click="dialog = false"
-      >
+      <v-btn color="secondary" x-large @click="dialog = false">
         <v-icon left>
           mdi-github
         </v-icon>
         GitHub
       </v-btn>
-      <v-btn
-        color="primary"
-        x-large
-        @click="dialog = false"
-      >
+      <v-btn color="primary" x-large @click="dialog = false">
         <v-icon left>
           mdi-twitter
         </v-icon>
         Twitter
       </v-btn>
-      <v-btn
-        color="indigo darken-2"
-        x-large
-        @click="dialog = false"
-      >
+      <v-btn color="indigo darken-2" x-large @click="dialog = false">
         <v-icon left>
           mdi-linkedin
         </v-icon>

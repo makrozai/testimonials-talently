@@ -116,6 +116,7 @@
           <v-btn
             color="primary"
             x-large
+            :loading="loading"
             @click="validate"
           >
             Agregar
@@ -134,6 +135,7 @@ export default {
 
   data: () => ({
     valid: false,
+    loading: false,
     user: {
       name: '',
       last_name: '',
@@ -195,7 +197,9 @@ export default {
 
         this.$router.go(-1)
       } catch (error) {
-        alert(error.errors)
+        alert('error service', error)
+      } finally {
+        this.loading = false
       }
     }
   }
