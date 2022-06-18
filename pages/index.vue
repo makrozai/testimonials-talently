@@ -52,9 +52,6 @@ export default {
   },
 
   methods: {
-    showCreateUserModal () {
-      alert('hi')
-    }
   }
 }
 </script>
